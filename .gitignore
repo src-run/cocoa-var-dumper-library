@@ -1,0 +1,26 @@
+
+#
+# This file is part of the `src-run/cocoa-dumper-library` project.
+#
+# (c) Rob Frawley 2nd <rmf@src.run>
+#
+# For the full copyright and license information, view the LICENSE.md
+# file distributed with this source code.
+#
+
+/vendor/
+/composer.lock
+/composer
+/composer.phar
+/phpunit.xml
+/build/*
+!build/.gitkeep
+/.idea/
+/bin/
+/var/
+LICENSE
+README
+.php_cs.cache
+.php_cs
+
+# EOF
