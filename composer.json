@@ -1,0 +1,53 @@
+{
+  "name": "src-run/cocoa-var-dumper-library",
+  "license": "MIT",
+  "type": "library",
+  "homepage": "https://src.run/cocoa-var-dumper-library",
+  "description": "A simple variable var-dumper/transformer library wrapping the symfony/var-dumper component.",
+  "support": {
+    "email": "rmf@src.run",
+    "issues": "https://src.run/cocoa-var-dumper-library/issues",
+    "source": "https://src.run/cocoa-var-dumper-library/git"
+  },
+  "keywords": [ "cocoa-var-dumper-library", "cocoa", "var-dumper", "library", "rmf", "src-run" ],
+  "authors": [
+    {
+      "name": "Rob Frawley 2nd",
+      "email": "rmf@src.run",
+      "homepage": "https://src.run/rmf",
+      "role": "Project Lead"
+    }
+  ],
+  "require": {
+    "php": "~7.1",
+    "src-run/augustus-exception-library": "~0.8.3",
+    "src-run/augustus-utility-library": "~0.8.5",
+    "symfony/var-dumper": "~3.4 | ~4.0"
+  },
+  "require-dev": {
+    "codacy/coverage": "~1.0",
+    "friendsofphp/php-cs-fixer": "~2.0",
+    "phpunit/phpunit": "~5.7",
+    "satooshi/php-coveralls": "~2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SR\\Dumper\\": "lib/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SR\\Dumper\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1-dev"
+    }
+  }
+}
