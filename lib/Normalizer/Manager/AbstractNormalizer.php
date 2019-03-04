@@ -12,7 +12,6 @@
 namespace SR\Dumper\Normalizer\Manager;
 
 use SR\Dumper\Normalizer\NormalizerInterface;
-use SR\Exception\Logic\InvalidArgumentException;
 
 abstract class AbstractNormalizer implements NormalizerInterface, \Countable
 {
@@ -37,7 +36,9 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
     public function __invoke($value)
     {
         if (!$this->supports($value)) {
-            throw new InvalidArgumentException('One or more normalizers do not support input value of "%s" type.', gettype($value));
+            throw new \InvalidArgumentException(sprintf(
+                'One or more normalizers do not support input value of "%s" type.', gettype($value)
+            ));
         }
 
         foreach ($this->normalizers as $normalizer) {

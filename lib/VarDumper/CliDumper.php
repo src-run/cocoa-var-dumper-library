@@ -14,12 +14,12 @@ namespace SR\Dumper\VarDumper;
 use SR\Output\Buffered\MemoryOutputBuffered;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\AbstractDumper;
-use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Dumper\CliDumper as SymfonyCliDumper;
 
 /**
  * @author Rob Frawley 2nd <rmf@src.run>
  */
-final class ReturnDumper
+final class CliDumper
 {
     /**
      * @var int
@@ -50,7 +50,7 @@ final class ReturnDumper
     {
         $buffer = new MemoryOutputBuffered();
 
-        (new CliDumper(function (string $line) use ($buffer): void {
+        (new SymfonyCliDumper(function (string $line) use ($buffer): void {
             $buffer->add(sprintf(' %s', $line));
         }, $this->charset, $this->flags))->dump((new VarCloner())->cloneVar($value));
 

@@ -25,12 +25,21 @@ return Config::create()
     ->setUsingCache(true)
     ->setRiskyAllowed(true)
     ->setFinder((new Finder())->in(__DIR__))
+    ->setHideProgress(false)
+    ->setLineEnding("\n")
+    ->setIndent('    ')
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHPUnit57Migration:risky' => true,
+        'align_multiline_comment' => [
+            'comment_type' => 'phpdocs_like'
+        ],
         'array_syntax' => [
             'syntax' => 'short'
+        ],
+        'braces' => [
+            'allow_single_line_closure' => true,
         ],
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,

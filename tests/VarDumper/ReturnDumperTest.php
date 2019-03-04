@@ -12,10 +12,10 @@
 namespace SR\Dumper\Tests\VarDumper\ReturnDumper;
 
 use PHPUnit\Framework\TestCase;
-use SR\Dumper\VarDumper\ReturnDumper;
+use SR\Dumper\VarDumper\ReturnedCliDumper;
 
 /**
- * @covers \SR\Dumper\VarDumper\ReturnDumper
+ * @covers \SR\Dumper\VarDumper\ReturnedCliDumper
  */
 class ReturnDumperTest extends TestCase
 {
@@ -27,7 +27,7 @@ class ReturnDumperTest extends TestCase
      */
     public function testDump(string $expected, $value = null): void
     {
-        $this->assertStringMatchesFormat($expected, (new ReturnDumper())->dump($value));
+        $this->assertStringMatchesFormat($expected, (new ReturnedCliDumper())->dump($value));
     }
 
     /**
@@ -35,7 +35,7 @@ class ReturnDumperTest extends TestCase
      */
     public static function provideDumpData(): \Iterator
     {
-        $closedResource = fopen('php://memory', 'r+b');
+        $closedResource = fopen('php://memory', 'r+');
         fclose($closedResource);
 
         yield ['(14) "a string value"', 'a string value'];
@@ -47,22 +47,22 @@ class ReturnDumperTest extends TestCase
         yield ['true', true];
         yield ['false', false];
         yield ['[ "a" => (5) "array", "with" => (6) "values" ]', ['a' => 'array', 'with' => 'values']];
-        yield ['Closure {#%d class: (%d) "%s" file: (%d) "%s" line: (8) "%d to %d" }', function () {}];
+        yield ['Closure() {#%d class: (%d) "%s" file: (%d) "%s" line: (8) "%d to %d" }', function () {}];
         yield ['@anonymous {#%d}', new class() {
         }];
         yield [sprintf('%s {#%%d %%s}', __CLASS__), new static()];
         yield ['Closed resource @%d', $closedResource];
-        yield ['stream resource {@%d %s}', fopen('php://memory', 'r+b')];
-        yield ['stream resource {@%d %s}', fopen(__FILE__, 'r+b')];
+        yield ['stream resource {@%d %s}', fopen('php://memory', 'r+')];
+        yield ['stream resource {@%d %s}', fopen(__FILE__, 'r+')];
         yield ['[]', []];
         yield ['[ "a" => (14) "a string value", "b" => 100, "c" => 33.333, "d" => null, "e" => true, "f" => false ]', ['a' => 'a string value', 'b' => 100, 'c' => 33.333, 'd' => null, 'e' => true, 'f' => false]];
-        yield [sprintf('[ "anonymous-function" => Closure {#%%d %%s}, "anonymous-object" => @anonymous {#%%d}, "defined-object" => %s {#%%d %%s}, "open-stdio-resource" => stream resource {@%%d %%s}, "open-memory-resource" => stream resource {@%%d %%s}, "closed-resource" => Closed resource @%%d ]', __CLASS__), [
+        yield [sprintf('[ "anonymous-function" => Closure() {#%%d %%s}, "anonymous-object" => @anonymous {#%%d}, "defined-object" => %s {#%%d %%s}, "open-stdio-resource" => stream resource {@%%d %%s}, "open-memory-resource" => stream resource {@%%d %%s}, "closed-resource" => Closed resource @%%d ]', __CLASS__), [
             'anonymous-function' => function () {},
             'anonymous-object' => new class() {
             },
             'defined-object' => new static(),
-            'open-stdio-resource' => fopen(__FILE__, 'r+b'),
-            'open-memory-resource' => fopen('php://memory', 'r+b'),
+            'open-stdio-resource' => fopen(__FILE__, 'r+'),
+            'open-memory-resource' => fopen('php://memory', 'r+'),
             'closed-resource' => $closedResource,
         ]];
     }

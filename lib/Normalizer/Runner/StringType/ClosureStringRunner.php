@@ -26,7 +26,7 @@ class ClosureStringRunner extends AbstractRunner
     {
         $this->replaceValueWithActionResultOnAllMatches(function (array $matchedValues) {
             return $this->normalizeClosure($matchedValues);
-        }, '{Closure \{(#|@)(?<id>[0-9]+)(?<more>[^\}]+)?\}}', $value);
+        }, '{Closure(?:\(\))? \{(#|@)(?<id>[0-9]+)(?<more>[^\}]+)?\}}', $value);
 
         return $value;
     }

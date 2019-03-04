@@ -13,7 +13,7 @@ namespace SR\Dumper\Transformer;
 
 use SR\Dumper\Normalizer\Manager\StringNormalizer;
 use SR\Dumper\Normalizer\NormalizerInterface;
-use SR\Dumper\VarDumper\ReturnDumper;
+use SR\Dumper\VarDumper\ReturnedCliDumper;
 
 /**
  * @author Rob Frawley 2nd <rmf@src.run>
@@ -86,7 +86,7 @@ final class StringTransformer
      */
     private static function stringifyComplex($value): string
     {
-        return (new ReturnDumper())->dump($value);
+        return (new ReturnedCliDumper())->dump($value);
     }
 
     /**

@@ -35,7 +35,7 @@ class StringTransformerTest extends TestCase
      */
     public static function provideTransformData(): \Iterator
     {
-        $closedResource = fopen('php://memory', 'r+b');
+        $closedResource = fopen('php://memory', 'r+');
         fclose($closedResource);
 
         yield ['a string value', 'a string value'];
@@ -51,8 +51,8 @@ class StringTransformerTest extends TestCase
         }];
         yield [sprintf('%s {#%%d}', __CLASS__), new static()];
         yield ['closed resource {#%d}', $closedResource];
-        yield ['stream resource {#%d @ php://memory (memory)}', fopen('php://memory', 'r+b')];
-        yield ['stream resource {#%d @ %s (stdio)}', fopen(__FILE__, 'r+b')];
+        yield ['stream resource {#%d @ php://memory (memory)}', fopen('php://memory', 'r+')];
+        yield ['stream resource {#%d @ %s (stdio)}', fopen(__FILE__, 'r+')];
         yield ['[ ] (0)', []];
         yield ['[ "a" => (string) "a string value", "b" => (int) "100", "c" => (float) "33.333", "d" => (null) "null", "e" => (bool) "true", "f" => (bool) "false" ] (6)', ['a' => 'a string value', 'b' => 100, 'c' => 33.333, 'd' => null, 'e' => true, 'f' => false]];
         yield [sprintf('[ "anonymous-function" => (object) "closure {#%%d @ %%s:%%d-%%d}", "anonymous-object" => (object) "@anonymous {#%%d}", "castable-object" => (object) "spl-object-hash:%%s", "defined-object" => (object) "%s {#%%d}", "open-stdio-resource" => (resource) "stream resource {#%%d @ %%s.php (stdio)}", "open-memory-resource" => (resource) "stream resource {#%%d @ php://memory (memory)}", "closed-resource" => (resource) "closed resource {#%%d}" ] (7)', __CLASS__), [
@@ -66,8 +66,8 @@ class StringTransformerTest extends TestCase
                 }
             },
             'defined-object' => new static(),
-            'open-stdio-resource' => fopen(__FILE__, 'r+b'),
-            'open-memory-resource' => fopen('php://memory', 'r+b'),
+            'open-stdio-resource' => fopen(__FILE__, 'r+'),
+            'open-memory-resource' => fopen('php://memory', 'r+'),
             'closed-resource' => $closedResource,
         ]];
     }
