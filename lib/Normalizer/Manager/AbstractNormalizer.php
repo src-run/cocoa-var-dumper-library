@@ -20,9 +20,6 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
      */
     private $normalizers;
 
-    /**
-     * @param NormalizerInterface ...$normalizers
-     */
     public function __construct(NormalizerInterface ...$normalizers)
     {
         $this->normalizers = $normalizers;
@@ -36,9 +33,7 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
     public function __invoke($value)
     {
         if (!$this->supports($value)) {
-            throw new \InvalidArgumentException(sprintf(
-                'One or more normalizers do not support input value of "%s" type.', gettype($value)
-            ));
+            throw new \InvalidArgumentException(sprintf('One or more normalizers do not support input value of "%s" type.', gettype($value)));
         }
 
         foreach ($this->normalizers as $normalizer) {
@@ -50,8 +45,6 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
 
     /**
      * @param mixed $value
-     *
-     * @return bool
      */
     public function supports($value): bool
     {
@@ -64,9 +57,6 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
         return true;
     }
 
-    /**
-     * @return int
-     */
     public function count(): int
     {
         return count($this->normalizers);
@@ -80,11 +70,8 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
         return $this->normalizers;
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
-        return get_called_class();
+        return static::class;
     }
 }

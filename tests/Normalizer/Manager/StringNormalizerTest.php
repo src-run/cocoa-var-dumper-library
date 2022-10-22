@@ -31,7 +31,6 @@ class StringNormalizerTest extends TestCase
     /**
      * @dataProvider provideNormalizerData
      *
-     * @param string     $expected
      * @param mixed|null $value
      */
     public function testNormalizer(string $expected, $value = null): void
@@ -39,9 +38,6 @@ class StringNormalizerTest extends TestCase
         $this->assertStringMatchesFormat($expected, (new StringTransformer(new StringNormalizer()))($value));
     }
 
-    /**
-     * @return \Iterator
-     */
     public static function provideNormalizerData(): \Iterator
     {
         $closedResource = fopen('php://memory', 'r+');
@@ -91,9 +87,6 @@ class StringNormalizerTest extends TestCase
         $this->assertSame(StringNormalizer::class, (new StringNormalizer())->type());
     }
 
-    /**
-     * @return \Iterator
-     */
     public function provideSupportsData(): \Iterator
     {
         yield [true, 'string'];
@@ -104,7 +97,6 @@ class StringNormalizerTest extends TestCase
     /**
      * @dataProvider provideSupportsData
      *
-     * @param bool  $expected
      * @param mixed $provided
      */
     public function testSupports(bool $expected, $provided): void
@@ -135,8 +127,6 @@ class StringNormalizerTest extends TestCase
         (new StringNormalizer(new class() extends AbstractRunner {
             /**
              * @param mixed $value
-             *
-             * @return bool
              */
             public function supports($value): bool
             {

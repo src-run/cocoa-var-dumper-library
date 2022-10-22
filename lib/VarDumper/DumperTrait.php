@@ -43,10 +43,7 @@ trait DumperTrait
     private $charset;
 
     /**
-     * @param int[]                        $options
-     * @param string|null                  $charset
-     * @param OutputInterface|null         $output
-     * @param OutputBufferedInterface|null $buffer
+     * @param int[] $options
      */
     public function __construct(array $options = [], string $charset = null, OutputInterface $output = null, OutputBufferedInterface $buffer = null)
     {
@@ -57,8 +54,6 @@ trait DumperTrait
     }
 
     /**
-     * @param int ...$options
-     *
      * @return DumperTrait|DumperInterface
      */
     public static function create(int ...$options): DumperInterface
@@ -66,11 +61,6 @@ trait DumperTrait
         return new static($options);
     }
 
-    /**
-     * @param bool $create
-     *
-     * @return OutputBufferedInterface
-     */
     public function getBuffer(bool $create = false): OutputBufferedInterface
     {
         if (true === $create) {
@@ -80,18 +70,12 @@ trait DumperTrait
         return $this->buffer;
     }
 
-    /**
-     * @return bool
-     */
     public function hasBuffer(): bool
     {
         return null !== $this->buffer;
     }
 
     /**
-     * @param OutputBufferedInterface|null $buffer
-     * @param bool                         $create
-     *
      * @return DumperTrait|DumperInterface
      */
     public function setBuffer(OutputBufferedInterface $buffer = null, bool $create = true): DumperInterface
@@ -108,25 +92,17 @@ trait DumperTrait
         return $this;
     }
 
-    /**
-     * @return null|OutputInterface
-     */
     public function getOutput(): ?OutputInterface
     {
         return $this->output;
     }
 
-    /**
-     * @return bool
-     */
     public function hasOutputs(): bool
     {
         return null !== $this->getOutput();
     }
 
     /**
-     * @param OutputInterface|null $output
-     *
      * @return DumperTrait|DumperInterface
      */
     public function setOutput(OutputInterface $output = null): DumperInterface
@@ -144,17 +120,12 @@ trait DumperTrait
         return $this->options;
     }
 
-    /**
-     * @return bool
-     */
     public function hasOptions(): bool
     {
         return !empty($this->getOptions());
     }
 
     /**
-     * @param int ...$options
-     *
      * @return DumperTrait|DumperInterface
      */
     public function setOptions(int ...$options): DumperInterface
@@ -164,25 +135,17 @@ trait DumperTrait
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getCharset(): ?string
     {
         return $this->charset;
     }
 
-    /**
-     * @return bool
-     */
     public function hasCharset(): bool
     {
         return null !== $this->getCharset();
     }
 
     /**
-     * @param string|null $charset
-     *
      * @return DumperTrait|DumperInterface
      */
     public function setCharset(string $charset = null): DumperInterface
@@ -194,8 +157,6 @@ trait DumperTrait
 
     /**
      * @param mixed $variable
-     *
-     * @return null|string
      */
     public function dump($variable): ?string
     {
@@ -206,14 +167,8 @@ trait DumperTrait
         return $this->hasBuffer() ? trim($this->getBuffer()->get()) : null;
     }
 
-    /**
-     * @return AbstractDumper
-     */
     abstract protected function getSymfonyDumperInstance(): AbstractDumper;
 
-    /**
-     * @return string
-     */
     private function getBufferClassQualified(): string
     {
         return $this->hasBuffer() ? get_class($this->buffer) : MemoryOutputBuffered::class;

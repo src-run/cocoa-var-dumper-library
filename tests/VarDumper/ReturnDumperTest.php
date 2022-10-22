@@ -22,7 +22,6 @@ class ReturnDumperTest extends TestCase
     /**
      * @dataProvider provideDumpData
      *
-     * @param string     $expected
      * @param mixed|null $value
      */
     public function testDump(string $expected, $value = null): void
@@ -30,9 +29,6 @@ class ReturnDumperTest extends TestCase
         $this->assertStringMatchesFormat($expected, (new ReturnedCliDumper())->dump($value));
     }
 
-    /**
-     * @return \Iterator
-     */
     public static function provideDumpData(): \Iterator
     {
         $closedResource = fopen('php://memory', 'r+');

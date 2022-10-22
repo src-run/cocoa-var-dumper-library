@@ -22,13 +22,8 @@ interface NormalizerInterface
 
     /**
      * @param mixed $value
-     *
-     * @return bool
      */
     public function supports($value): bool;
 
-    /**
-     * @return string
-     */
     public function type(): string;
 }

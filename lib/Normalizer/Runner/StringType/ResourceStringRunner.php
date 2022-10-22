@@ -19,8 +19,6 @@ class ResourceStringRunner extends AbstractRunner
 
     /**
      * @param string $value
-     *
-     * @return string
      */
     protected function normalize($value): string
     {
@@ -35,11 +33,6 @@ class ResourceStringRunner extends AbstractRunner
         return $value;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return string
-     */
     private function normalizeResource(array $data): string
     {
         return $this->returnMatchedOrGenericActionResult(function () use ($data) {

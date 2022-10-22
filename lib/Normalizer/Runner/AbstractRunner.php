@@ -23,12 +23,9 @@ abstract class AbstractRunner implements NormalizerInterface
         return $this->supports($value) ? $this->normalize($value) : $value;
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
-        return get_called_class();
+        return static::class;
     }
 
     /**

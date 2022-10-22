@@ -17,8 +17,6 @@ class NullRunner extends AbstractRunner
 {
     /**
      * @param mixed $value
-     *
-     * @return bool
      */
     public function supports($value): bool
     {

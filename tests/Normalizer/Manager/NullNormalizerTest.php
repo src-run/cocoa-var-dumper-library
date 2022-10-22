@@ -26,7 +26,6 @@ class NullNormalizerTest extends TestCase
     /**
      * @dataProvider provideNormalizerData
      *
-     * @param string     $expected
      * @param mixed|null $value
      */
     public function testNormalizer(string $expected, $value = null): void
@@ -34,9 +33,6 @@ class NullNormalizerTest extends TestCase
         $this->assertStringMatchesFormat($expected, (new StringTransformer(new NullNormalizer()))($value));
     }
 
-    /**
-     * @return \Iterator
-     */
     public static function provideNormalizerData(): \Iterator
     {
         $closedResource = fopen('php://memory', 'r+');

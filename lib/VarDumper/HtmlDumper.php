@@ -31,10 +31,6 @@ final class HtmlDumper
      */
     private $charset;
 
-    /**
-     * @param int|null    $flags
-     * @param string|null $charset
-     */
     public function __construct(int $flags = null, string $charset = null)
     {
         $this->flags = $flags ?: AbstractDumper::DUMP_STRING_LENGTH | AbstractDumper::DUMP_LIGHT_ARRAY | AbstractDumper::DUMP_COMMA_SEPARATOR;
@@ -43,8 +39,6 @@ final class HtmlDumper
 
     /**
      * @param mixed $value
-     *
-     * @return string
      */
     public function dump($value): string
     {

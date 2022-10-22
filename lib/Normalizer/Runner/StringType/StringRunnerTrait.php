@@ -24,11 +24,6 @@ trait StringRunnerTrait
         return is_string($value);
     }
 
-    /**
-     * @param \Closure $action
-     * @param string   $regexp
-     * @param string   $value
-     */
     private function replaceValueWithActionResultOnAllMatches(\Closure $action, string $regexp, string &$value): void
     {
         if (false !== preg_match_all($regexp, $value, $matches, PREG_SET_ORDER)) {
@@ -38,14 +33,6 @@ trait StringRunnerTrait
         }
     }
 
-    /**
-     * @param \Closure $matchAction
-     * @param \Closure $generalAction
-     * @param string   $regexp
-     * @param          $search
-     *
-     * @return string
-     */
     private function returnMatchedOrGenericActionResult(\Closure $generalAction, \Closure $matchAction, string $regexp, string $search = null): string
     {
         if (null !== $search && 1 === preg_match($regexp, $search, $m)) {
@@ -55,11 +42,6 @@ trait StringRunnerTrait
         return $generalAction();
     }
 
-    /**
-     * @param string $path
-     *
-     * @return string
-     */
     private function tryPathResolve(string $path): string
     {
         return realpath($path) ?: $path;

@@ -16,9 +16,6 @@ use SR\Dumper\Normalizer\Runner\NullType\NullRunner;
 
 final class NullNormalizer extends AbstractNormalizer
 {
-    /**
-     * @param NormalizerInterface ...$normalizers
-     */
     public function __construct(NormalizerInterface ...$normalizers)
     {
         parent::__construct(...array_merge([

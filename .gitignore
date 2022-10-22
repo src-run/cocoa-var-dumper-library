@@ -23,5 +23,6 @@ README
 .php_cs.cache
 .php_cs
 .phpunit.result.cache
+.php-cs-fixer.cache
 
 # EOF

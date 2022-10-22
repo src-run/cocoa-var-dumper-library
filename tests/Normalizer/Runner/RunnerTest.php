@@ -28,17 +28,12 @@ class RunnerTest extends TestCase
 {
     /**
      * @dataProvider provideRunnerData
-     *
-     * @param string $class
      */
     public function testNormalizer(string $class): void
     {
         $this->assertSame($class, (new $class())->type());
     }
 
-    /**
-     * @return \Iterator
-     */
     public static function provideRunnerData(): \Iterator
     {
         yield [ClosureStringRunner::class];

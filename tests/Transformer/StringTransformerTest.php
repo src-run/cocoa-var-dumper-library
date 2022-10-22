@@ -22,7 +22,6 @@ class StringTransformerTest extends TestCase
     /**
      * @dataProvider provideTransformData
      *
-     * @param string     $expected
      * @param mixed|null $value
      */
     public function testTransform(string $expected, $value = null): void
@@ -30,9 +29,6 @@ class StringTransformerTest extends TestCase
         $this->assertStringMatchesFormat($expected, (new StringTransformer())($value));
     }
 
-    /**
-     * @return \Iterator
-     */
     public static function provideTransformData(): \Iterator
     {
         $closedResource = fopen('php://memory', 'r+');

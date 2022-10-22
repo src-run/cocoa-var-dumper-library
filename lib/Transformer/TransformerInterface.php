@@ -15,8 +15,6 @@ interface TransformerInterface
 {
     /**
      * @param mixed $value
-     *
-     * @return string
      */
     public function __invoke($value): string;
 }

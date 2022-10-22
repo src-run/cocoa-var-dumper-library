@@ -19,8 +19,6 @@ class ClosureStringRunner extends AbstractRunner
 
     /**
      * @param string $value
-     *
-     * @return string
      */
     protected function normalize($value): string
     {
@@ -31,11 +29,6 @@ class ClosureStringRunner extends AbstractRunner
         return $value;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return string
-     */
     private function normalizeClosure(array $data): string
     {
         return $this->returnMatchedOrGenericActionResult(function () use ($data) {

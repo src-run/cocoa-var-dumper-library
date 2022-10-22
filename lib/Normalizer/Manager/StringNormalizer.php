@@ -18,9 +18,6 @@ use SR\Dumper\Normalizer\Runner\StringType\ResourceStringRunner;
 
 final class StringNormalizer extends AbstractNormalizer
 {
-    /**
-     * @param NormalizerInterface ...$normalizers
-     */
     public function __construct(NormalizerInterface ...$normalizers)
     {
         parent::__construct(...array_merge([

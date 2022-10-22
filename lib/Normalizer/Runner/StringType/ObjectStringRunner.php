@@ -19,8 +19,6 @@ class ObjectStringRunner extends AbstractRunner
 
     /**
      * @param string $value
-     *
-     * @return string
      */
     protected function normalize($value): string
     {
@@ -31,11 +29,6 @@ class ObjectStringRunner extends AbstractRunner
         return $value;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return string
-     */
     private function normalizeObject(array $data): string
     {
         return sprintf('%s {#%d}', $data['type'], $data['id']);
