@@ -16,21 +16,16 @@ use SR\Dumper\Normalizer\NormalizerInterface;
 abstract class AbstractNormalizer implements NormalizerInterface, \Countable
 {
     /**
-     * @var NormalizerInterface[]
+     * @return NormalizerInterface[]
      */
-    private $normalizers;
+    private array $normalizers;
 
     public function __construct(NormalizerInterface ...$normalizers)
     {
         $this->normalizers = $normalizers;
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function __invoke($value)
+    public function __invoke(mixed $value): mixed
     {
         if (!$this->supports($value)) {
             throw new \InvalidArgumentException(sprintf('One or more normalizers do not support input value of "%s" type.', gettype($value)));
@@ -43,10 +38,7 @@ abstract class AbstractNormalizer implements NormalizerInterface, \Countable
         return $value;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function supports($value): bool
+    public function supports(mixed $value): bool
     {
         foreach ($this->normalizers as $normalizer) {
             if (!$normalizer->supports($value)) {

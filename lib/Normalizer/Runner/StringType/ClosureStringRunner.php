@@ -17,10 +17,7 @@ class ClosureStringRunner extends AbstractRunner
 {
     use StringRunnerTrait;
 
-    /**
-     * @param string $value
-     */
-    protected function normalize($value): string
+    protected function normalize(mixed $value): string
     {
         $this->replaceValueWithActionResultOnAllMatches(function (array $matchedValues) {
             return $this->normalizeClosure($matchedValues);

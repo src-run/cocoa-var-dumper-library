@@ -17,10 +17,7 @@ class ResourceStringRunner extends AbstractRunner
 {
     use StringRunnerTrait;
 
-    /**
-     * @param string $value
-     */
-    protected function normalize($value): string
+    protected function normalize(mixed $value): string
     {
         $this->replaceValueWithActionResultOnAllMatches(function (array $matchedValues) {
             return $this->normalizeResource($matchedValues);

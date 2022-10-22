@@ -13,17 +13,9 @@ namespace SR\Dumper\Normalizer;
 
 interface NormalizerInterface
 {
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function __invoke($value);
+    public function __invoke(mixed $value): mixed;
 
-    /**
-     * @param mixed $value
-     */
-    public function supports($value): bool;
+    public function supports(mixed $value): bool;
 
     public function type(): string;
 }

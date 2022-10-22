@@ -125,10 +125,7 @@ class StringNormalizerTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         (new StringNormalizer(new class() extends AbstractRunner {
-            /**
-             * @param mixed $value
-             */
-            public function supports($value): bool
+            public function supports(mixed $value): bool
             {
                 return false;
             }
@@ -138,7 +135,7 @@ class StringNormalizerTest extends TestCase
              *
              * @return string
              */
-            protected function normalize($value)
+            protected function normalize(mixed $value): mixed
             {
                 return $value;
             }

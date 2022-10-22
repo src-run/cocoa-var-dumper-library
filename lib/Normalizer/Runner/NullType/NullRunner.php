@@ -15,20 +15,12 @@ use SR\Dumper\Normalizer\Runner\AbstractRunner;
 
 class NullRunner extends AbstractRunner
 {
-    /**
-     * @param mixed $value
-     */
-    public function supports($value): bool
+    public function supports(mixed $value): bool
     {
         return true;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return string
-     */
-    protected function normalize($value)
+    protected function normalize(mixed $value): string
     {
         return $value;
     }

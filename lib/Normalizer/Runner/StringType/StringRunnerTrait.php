@@ -16,10 +16,7 @@ namespace SR\Dumper\Normalizer\Runner\StringType;
  */
 trait StringRunnerTrait
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function supports($value): bool
+    public function supports(mixed $value): bool
     {
         return is_string($value);
     }

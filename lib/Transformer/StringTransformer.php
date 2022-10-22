@@ -20,32 +20,23 @@ use SR\Dumper\VarDumper\ReturnedCliDumper;
  */
 final class StringTransformer
 {
-    /**
-     * @var NormalizerInterface
-     */
-    private $normalizer;
+    private NormalizerInterface $normalizer;
 
     public function __construct(NormalizerInterface $normalizer = null)
     {
         $this->normalizer = $normalizer ?? new StringNormalizer();
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function __invoke($value): string
+    public function __invoke(mixed $value): string
     {
         return ($this->normalizer)(self::stringify($value));
     }
 
-    /**
-     * @param mixed $value
-     */
-    private static function stringify($value): string
+    private static function stringify(mixed $value): string
     {
         if (
             (is_string($value) || is_int($value)) ||
-            (is_object($value) && method_exists($value, '__toString') && is_callable([$value, '__toString']))
+            ((is_string($value) || is_object($value)) && !is_array($value) && method_exists($value, '__toString') && is_callable([$value, '__toString']))
         ) {
             return (string) $value;
         }
@@ -69,18 +60,12 @@ final class StringTransformer
             : sprintf('[ %s ] (%d)', implode(', ', $array), count($array));
     }
 
-    /**
-     * @param string $value
-     */
-    private static function stringifyComplex($value): string
+    private static function stringifyComplex(mixed $value): string
     {
         return (new ReturnedCliDumper())->dump($value);
     }
 
-    /**
-     * @param mixed $value
-     */
-    private static function shortInternalType($value, string $string): string
+    private static function shortInternalType(mixed $value, string $string): string
     {
         if (is_bool($value)) {
             return 'bool';
@@ -101,10 +86,7 @@ final class StringTransformer
         return self::normalizeInternalType($value, $string);
     }
 
-    /**
-     * @param mixed $value
-     */
-    private static function normalizeInternalType($value, string $string): string
+    private static function normalizeInternalType(mixed $value, string $string): string
     {
         if (!is_string($value) && 0 === mb_strpos($string, 'Closed resource @')) {
             return 'resource';

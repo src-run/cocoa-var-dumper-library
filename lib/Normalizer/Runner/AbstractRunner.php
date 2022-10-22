@@ -15,10 +15,7 @@ use SR\Dumper\Normalizer\NormalizerInterface;
 
 abstract class AbstractRunner implements NormalizerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke($value)
+    public function __invoke(mixed $value): mixed
     {
         return $this->supports($value) ? $this->normalize($value) : $value;
     }
@@ -28,10 +25,5 @@ abstract class AbstractRunner implements NormalizerInterface
         return static::class;
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    abstract protected function normalize($value);
+    abstract protected function normalize(mixed $value): mixed;
 }

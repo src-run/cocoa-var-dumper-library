@@ -13,8 +13,5 @@ namespace SR\Dumper\Transformer;
 
 interface TransformerInterface
 {
-    /**
-     * @param mixed $value
-     */
-    public function __invoke($value): string;
+    public function __invoke(mixed $value): string;
 }
