@@ -47,7 +47,7 @@ class StringTransformerTest extends TestCase
         yield ['true', true];
         yield ['false', false];
         yield ['closure {#%d @ %s:%d-%d}', function () {}];
-        yield ['@anonymous {#%d}', new class() {
+        yield ['class@anonymous {#%d}', new class() {
         }];
         yield [sprintf('%s {#%%d}', __CLASS__), new static()];
         yield ['closed resource {#%d}', $closedResource];
@@ -55,7 +55,7 @@ class StringTransformerTest extends TestCase
         yield ['stream resource {#%d @ %s (stdio)}', fopen(__FILE__, 'r+')];
         yield ['[ ] (0)', []];
         yield ['[ "a" => (string) "a string value", "b" => (int) "100", "c" => (float) "33.333", "d" => (null) "null", "e" => (bool) "true", "f" => (bool) "false" ] (6)', ['a' => 'a string value', 'b' => 100, 'c' => 33.333, 'd' => null, 'e' => true, 'f' => false]];
-        yield [sprintf('[ "anonymous-function" => (object) "closure {#%%d @ %%s:%%d-%%d}", "anonymous-object" => (object) "@anonymous {#%%d}", "castable-object" => (object) "spl-object-hash:%%s", "defined-object" => (object) "%s {#%%d}", "open-stdio-resource" => (resource) "stream resource {#%%d @ %%s.php (stdio)}", "open-memory-resource" => (resource) "stream resource {#%%d @ php://memory (memory)}", "closed-resource" => (resource) "closed resource {#%%d}" ] (7)', __CLASS__), [
+        yield [sprintf('[ "anonymous-function" => (object) "closure {#%%d @ %%s:%%d-%%d}", "anonymous-object" => (object) "class@anonymous {#%%d}", "castable-object" => (object) "spl-object-hash:%%s", "defined-object" => (object) "%s {#%%d}", "open-stdio-resource" => (resource) "stream resource {#%%d @ %%s.php (stdio)}", "open-memory-resource" => (resource) "stream resource {#%%d @ php://memory (memory)}", "closed-resource" => (resource) "closed resource {#%%d}" ] (7)', __CLASS__), [
             'anonymous-function' => function () {},
             'anonymous-object' => new class() {
             },

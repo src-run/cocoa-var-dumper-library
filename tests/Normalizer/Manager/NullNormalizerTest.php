@@ -51,14 +51,14 @@ class NullNormalizerTest extends TestCase
         yield ['true', true];
         yield ['false', false];
         yield ['Closure() {#%d class: (%d) "%s" file: (%d) "%s" line: (8) "%d to %d" }', function () {}];
-        yield ['@anonymous {#%d}', new class() {
+        yield ['class@anonymous {#%d}', new class() {
         }];
         yield [sprintf('%s {#%%d %%s}', __CLASS__), new static()];
         yield ['Closed resource @%d', $closedResource];
         yield ['stream resource {@%d %s}', fopen('php://memory', 'r+')];
         yield ['stream resource {@%d %s}', fopen(__FILE__, 'r+')];
         yield ['[ "a" => (string) "a string value", "b" => (int) "100", "c" => (float) "33.333", "d" => (null) "null", "e" => (bool) "true", "f" => (bool) "false" ] (6)', ['a' => 'a string value', 'b' => 100, 'c' => 33.333, 'd' => null, 'e' => true, 'f' => false]];
-        yield [sprintf('[ "anonymous-function" => (object) "Closure() {#%%d %%s}", "anonymous-object" => (object) "@anonymous {#%%d}", "castable-object" => (object) "spl-object-hash:%%s", "defined-object" => (object) "%s {#%%d %%s}", "open-stdio-resource" => (resource) "stream resource {@%%d %%s}", "open-memory-resource" => (resource) "stream resource {@%%d %%s}", "closed-resource" => (resource) "Closed resource @%%d" ] (7)', __CLASS__), [
+        yield [sprintf('[ "anonymous-function" => (object) "Closure() {#%%d %%s}", "anonymous-object" => (object) "class@anonymous {#%%d}", "castable-object" => (object) "spl-object-hash:%%s", "defined-object" => (object) "%s {#%%d %%s}", "open-stdio-resource" => (resource) "stream resource {@%%d %%s}", "open-memory-resource" => (resource) "stream resource {@%%d %%s}", "closed-resource" => (resource) "Closed resource @%%d" ] (7)', __CLASS__), [
             'anonymous-function' => function () {},
             'anonymous-object' => new class() {
             },

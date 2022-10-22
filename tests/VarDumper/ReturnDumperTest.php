@@ -48,7 +48,7 @@ class ReturnDumperTest extends TestCase
         yield ['false', false];
         yield ['[ "a" => (5) "array", "with" => (6) "values" ]', ['a' => 'array', 'with' => 'values']];
         yield ['Closure() {#%d class: (%d) "%s" file: (%d) "%s" line: (8) "%d to %d" }', function () {}];
-        yield ['@anonymous {#%d}', new class() {
+        yield ['class@anonymous {#%d}', new class() {
         }];
         yield [sprintf('%s {#%%d %%s}', __CLASS__), new static()];
         yield ['Closed resource @%d', $closedResource];
@@ -56,7 +56,7 @@ class ReturnDumperTest extends TestCase
         yield ['stream resource {@%d %s}', fopen(__FILE__, 'r+')];
         yield ['[]', []];
         yield ['[ "a" => (14) "a string value", "b" => 100, "c" => 33.333, "d" => null, "e" => true, "f" => false ]', ['a' => 'a string value', 'b' => 100, 'c' => 33.333, 'd' => null, 'e' => true, 'f' => false]];
-        yield [sprintf('[ "anonymous-function" => Closure() {#%%d %%s}, "anonymous-object" => @anonymous {#%%d}, "defined-object" => %s {#%%d %%s}, "open-stdio-resource" => stream resource {@%%d %%s}, "open-memory-resource" => stream resource {@%%d %%s}, "closed-resource" => Closed resource @%%d ]', __CLASS__), [
+        yield [sprintf('[ "anonymous-function" => Closure() {#%%d %%s}, "anonymous-object" => class@anonymous {#%%d}, "defined-object" => %s {#%%d %%s}, "open-stdio-resource" => stream resource {@%%d %%s}, "open-memory-resource" => stream resource {@%%d %%s}, "closed-resource" => Closed resource @%%d ]', __CLASS__), [
             'anonymous-function' => function () {},
             'anonymous-object' => new class() {
             },

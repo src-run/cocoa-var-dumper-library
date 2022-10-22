@@ -7,7 +7,6 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         syntaxCheck="true"
          bootstrap="./vendor/autoload.php">
 
     <testsuites>
@@ -17,8 +16,9 @@
     </testsuites>
 
     <filter>
-        <whitelist>
-            <directory>lib</directory>
+        <whitelist addUncoveredFilesFromWhitelist="true"
+                   processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">lib</directory>
         </whitelist>
     </filter>
 

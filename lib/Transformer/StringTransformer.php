@@ -50,8 +50,10 @@ final class StringTransformer
      */
     private static function stringify($value): string
     {
-        if ((is_string($value) || is_int($value)) ||
-            (method_exists($value, '__toString') && is_callable([$value, '__toString']))) {
+        if (
+                (is_string($value) || is_int($value)) ||
+                (is_object($value) && method_exists($value, '__toString') && is_callable([$value, '__toString']))
+        ) {
             return (string) $value;
         }
 
